@@ -1,0 +1,47 @@
+export const project = [
+    {
+        id: 1,
+        name: 'agua potable',
+        abstrac: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget urna maximus, ultrices neque quis, malesuada tortor. Sed imperdiet, dolor in scelerisque aliquet, dolor nisi molestie nibh, vel varius elit urna a magna. Maecenas elementum posuere facilisis. Proin ultrices, arcu non fermentum tristique, felis dui mattis turpis, condimentum tincidunt orci nulla et elit. Phasellus elementum porttitor felis, in pulvinar eros feugiat quis. Nunc mollis neque eu mollis lobortis. Nullam a est sit amet lectus consectetur accumsan.',
+        images: 'http://ongcausasnobles.cl/wp-content/uploads/2020/07/causasnobles.png',
+        location: 'peru',
+        cost: '500,000',
+    },
+    {
+        id: 2,
+        name:'electricidad',
+        abstrac: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget urna maximus, ultrices neque quis, malesuada tortor. Sed imperdiet, dolor in scelerisque aliquet, dolor nisi molestie nibh, vel varius elit urna a magna. Maecenas elementum posuere facilisis. Proin ultrices, arcu non fermentum tristique, felis dui mattis turpis, condimentum tincidunt orci nulla et elit. Phasellus elementum porttitor felis, in pulvinar eros feugiat quis. Nunc mollis neque eu mollis lobortis. Nullam a est sit amet lectus consectetur accumsan.',
+        images: 'https://ayudaenaccion.org/uploads/2022/02/RS12046_IMG-20190508-WA0002.jpg',
+        location: 'colombia',
+        cost: '200,000',
+    },
+    {
+        id: 3,
+        name: 'alimentacion',
+        abstrac: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget urna maximus, ultrices neque quis, malesuada tortor. Sed imperdiet, dolor in scelerisque aliquet, dolor nisi molestie nibh, vel varius elit urna a magna. Maecenas elementum posuere facilisis. Proin ultrices, arcu non fermentum tristique, felis dui mattis turpis, condimentum tincidunt orci nulla et elit. Phasellus elementum porttitor felis, in pulvinar eros feugiat quis. Nunc mollis neque eu mollis lobortis. Nullam a est sit amet lectus consectetur accumsan.',
+        images:'https://images.ecestaticos.com/MWLb9v9Lf33repBmyeLoY6lXuJA=/0x0:1254x836/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2Fdbd%2F0bf%2Fcf6%2Fdbd0bfcf66e3dc6778dd2afade6f8604.jpg',
+        location: 'brazil',
+        cost: '150,000',
+    },
+    {
+        id: 4,
+        name: 'agricultura sostenible',
+        abstrac: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget urna maximus, ultrices neque quis, malesuada tortor. Sed imperdiet, dolor in scelerisque aliquet, dolor nisi molestie nibh, vel varius elit urna a magna. Maecenas elementum posuere facilisis. Proin ultrices, arcu non fermentum tristique, felis dui mattis turpis, condimentum tincidunt orci nulla et elit. Phasellus elementum porttitor felis, in pulvinar eros feugiat quis. Nunc mollis neque eu mollis lobortis. Nullam a est sit amet lectus consectetur accumsan.',
+        images: 'https://www.bancomundial.org/content/dam/photos/780x439/2020/nov-1/CropfieldGTMariaFleischmann.jpg',
+        location: 'argentina',
+        cost:'600,000',
+    },
+    {
+        id: 5,
+        name: 'salud sin fronteras',
+        abstrac: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget urna maximus, ultrices neque quis, malesuada tortor. Sed imperdiet, dolor in scelerisque aliquet, dolor nisi molestie nibh, vel varius elit urna a magna. Maecenas elementum posuere facilisis. Proin ultrices, arcu non fermentum tristique, felis dui mattis turpis, condimentum tincidunt orci nulla et elit. Phasellus elementum porttitor felis, in pulvinar eros feugiat quis. Nunc mollis neque eu mollis lobortis. Nullam a est sit amet lectus consectetur accumsan.',
+        images: 'https://www.noticiasensalud.com/wp-content/uploads/2021/07/Servicios-centros-e-informaciones-de-interes-para-garantizar-nuestra-salud-1000x600.png',
+        location: 'haiti',
+        cost: '1,000,000',
+    }
+]
