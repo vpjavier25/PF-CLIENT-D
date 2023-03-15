@@ -16,6 +16,7 @@ export default function NavBar(){
             <span>Idioms</span>
             <Link to={"/login"} > <span>Login</span> </Link>
             <Link to={"/projects"} > <span>Projects</span> </Link>
+            <Link to={"/create"} > <span>Create Project</span> </Link>
             <Link to={"/home/aboutUs"} > <span>About Us</span> </Link>
             <SearchBar/>
         </div>
