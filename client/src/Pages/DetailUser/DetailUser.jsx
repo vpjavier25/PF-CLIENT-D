@@ -1,7 +1,7 @@
-export default function Pagos (){
+export default function DetailUser (){
     return(
         <div>
-            <p>Soy Pagos</p>
+            <p>Soy DetailUser</p>
         </div>
     )
 }

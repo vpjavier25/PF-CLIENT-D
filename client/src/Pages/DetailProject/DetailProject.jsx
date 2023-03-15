@@ -1,7 +1,7 @@
-export default function Pagos (){
+export default function DetailProject (){
     return(
         <div>
-            <p>Soy Pagos</p>
+            <p>Soy DetailProject</p>
         </div>
     )
 }

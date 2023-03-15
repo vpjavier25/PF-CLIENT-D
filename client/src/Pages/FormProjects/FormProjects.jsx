@@ -1,7 +1,7 @@
-export default function Pagos (){
+export default function FormProjects (){
     return(
         <div>
-            <p>Soy Pagos</p>
+            <p>Soy FormProjects</p>
         </div>
     )
 }
