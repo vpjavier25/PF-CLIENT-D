@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { project } from "../../Utils/seed";
+import { project, users } from "../../Utils/seed";
 
 const initialState = {
   AllProjects: [...project],
@@ -12,6 +12,7 @@ const initialState = {
   projectsFiltred: [],
   filterLocation: [],
   filterState: [],
+  users: [...users],
 };
 
 export const getProjectById = createAsyncThunk(
@@ -51,7 +52,8 @@ const projectsSlicer = createSlice({
   name: "project",
   initialState,
   reducers: {
-    //logica filtros
+
+    ///////////logica filtros////////////
     filter(state, action) {
       if (!state.filterLocation.length && !state.filterState.length) {
         state.ProjectsToDisplay = [...state.AllProjects];
