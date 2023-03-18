@@ -6,7 +6,6 @@ export default function Projects (){
 
     return(
         <div>
-            <p>Soy Projects</p>
             <Page projects = {allProjects}/>
         </div>
     )
