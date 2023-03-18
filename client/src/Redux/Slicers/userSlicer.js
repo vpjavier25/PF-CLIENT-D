@@ -38,13 +38,11 @@ const usersSlicer = createSlice({
       .addCase(postUser.fulfilled, (state) => {
         state.postStatus = "Succeeded";
       })
-      .addCase(getUserById.fulfilled, (state, action) => {
-        state.projectId = action.payload;
-      })
+    //   .addCase(getUserById.fulfilled, (state, action) => {
+    //     state.projectId = action.payload;
+    //   })
       .addCase(getUsers.fulfilled, (state, action) => {
-        state.AllProjects = [...action.payload];
-        state.ProjectsToDisplay = [...action.payload];
-        state.projectsFiltred = [...action.payload];
+        state.users = [...action.payload]
       })
   },
 });
