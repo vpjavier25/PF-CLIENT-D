@@ -19,7 +19,7 @@ export const project = [
         location: 'Colombia',
         cost: 200000,
         completed : true,
-        name: "Alejandro",
+        user: "Alejandro",
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ export const project = [
         location: 'Brazil',
         cost: 150000,
         completed : false,
-        name: "Daniel",
+        user: "Daniel",
     },
     {
         id: 4,
@@ -41,7 +41,7 @@ export const project = [
         location: 'Argentina',
         cost:600000,
         completed : false,
-        name: "Alejandro",
+        user: "Alejandro",
     },
     {
         id: 5,
@@ -52,7 +52,7 @@ export const project = [
         location: 'Haiti',
         cost: 7000000,
         completed : false,
-        name: "Braian",
+        user: "Braian",
     },
     {
         id: 6,
@@ -63,7 +63,7 @@ export const project = [
         location: 'Brasil',
         cost: 9000000,
         completed : true,
-        name: "Alejandro", 
+        user: "Alejandro", 
     },
     {
         id: 7,
@@ -74,7 +74,7 @@ export const project = [
         location: 'Colombia',
         cost: 1000000,
         completed : false,
-        name: "Daniel",
+        user: "Daniel",
     },
     {
         id: 8,
