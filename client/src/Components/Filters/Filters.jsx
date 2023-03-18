@@ -64,13 +64,13 @@ export default function Filters ({page, ord}){
                         <MenuItemOption value={false} >En Proceso</MenuItemOption>
                     </MenuOptionGroup>
                     <MenuDivider />
-                    <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation} >
-                        <Box maxHeight='200px' overflow="scroll">
+                    <Box maxHeight='200px' overflowY="scroll">
+                        <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation} >
                             {locations.map((location, i)=>{
-                                return <MenuItemOption value={location} key={i}>{location}</MenuItemOption>
+                                    return <MenuItemOption value={location} key={i}>{location}</MenuItemOption>
                             })}
-                        </Box>
-                    </MenuOptionGroup>
+                        </MenuOptionGroup>
+                    </Box>
                 </MenuList>
             </Menu>
         </div>

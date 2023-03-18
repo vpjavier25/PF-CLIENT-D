@@ -18,8 +18,7 @@ export const getProjectById = createAsyncThunk(
   "project/getProjectById",
   async (id) => {
     const res = await axios.get(`http://localhost:3001/projects/${id}`);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
 
@@ -27,23 +26,20 @@ export const getProjectByName = createAsyncThunk(
   "project/getProjectByName",
   async (name) => {
     const res = await axios.get(`http://localhost:3001/projects?name=${name}`);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
 
 export const getProject = createAsyncThunk("project/getProject", async () => {
   const res = await axios.get(`http://localhost:3001/projects`);
-  const data = res.json();
-  return data;
+  return res.data;
 });
 
 export const postProject = createAsyncThunk(
   "project/postProject",
   async (info) => {
     const res = await axios.post("http://localhost:3001/projects", info);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
 
@@ -51,7 +47,8 @@ const projectsSlicer = createSlice({
   name: "project",
   initialState,
   reducers: {
-    //logica filtros
+
+    ///////////logica filtros////////////
     filter(state, action) {
       if (!state.filterLocation.length && !state.filterState.length) {
         state.ProjectsToDisplay = [...state.AllProjects];
