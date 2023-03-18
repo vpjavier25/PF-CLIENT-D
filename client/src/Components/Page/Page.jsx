@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import{useDispatch, useSelector} from 'react-redux'
+import { Grid, GridItem } from '@chakra-ui/react'
 
 //import de componentes
 import CardContainer from "../CardContainer/CardContainer" ;
@@ -27,15 +28,31 @@ export default  function Page ({projects}) {
 
     return(
         <div >
-            <div >
-                <Filters page={page} ord={ord}/>
-            </div>
-            <div>
-                <Pagination projectsPerPage={perPage} projects={projects.length} page={page} currentPage={currentPage}/>
-                <div >
-                    {projects.length ? <CardContainer currentProjects ={currentProjects}/> : <NoResult />}
-                </div >
-            </div>
+            <Grid
+            templateAreas={`"header header"
+                            "nav main"
+                            "nav footer"`}
+            gridTemplateRows={'50px 1fr 30px'}
+            gridTemplateColumns={'150px 1fr'}
+            h='200px'
+            gap='1'
+            color='blackAlpha.700'
+            >
+                <GridItem pl='2'  area={'header'}>
+                    <Pagination projectsPerPage={perPage} projects={projects.length} page={page} currentPage={currentPage}/>
+                </GridItem>
+                <GridItem pl='2' area={'nav'}>
+                    <Filters page={page} ord={ord}/>
+                </GridItem>
+                <GridItem pl='2' area={'main'} justify-content='center' align-items= 'center' margin='10px'>
+                    <div >
+                        {projects.length ? <CardContainer currentProjects ={currentProjects}/> : <NoResult />}
+                    </div >
+                </GridItem>
+                <GridItem pl='2' bg='blue.300' area={'footer'}>
+                    Footer
+                </GridItem>
+            </Grid>
         </div>
     )
 }

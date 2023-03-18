@@ -2,6 +2,7 @@ import {Menu, MenuButton, MenuList, MenuOptionGroup, MenuItemOption, MenuDivider
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { filter, addFilterLocation, addFilterState, orderByAlpha } from "../../Redux/Slicers/projectSlicer";
+import style from './Filters.module.css'
 
 
 export default function Filters ({page, ord}){
@@ -39,9 +40,9 @@ export default function Filters ({page, ord}){
 
     return(
         <div>
-            <Menu closeOnSelect={false}>
-                <MenuButton as={Button} colorScheme='blue'>
-                    Filtrar por: 
+            <Menu closeOnSelect={false } overflow="scroll">
+                <MenuButton as={Button} colorScheme='blue' className={style.Buttons}>
+                    Ordenar:
                 </MenuButton>
                 <MenuList minWidth='240px'>
                     <MenuOptionGroup defaultValue='none' title='Orden Alfabético' type='radio' onChange={handlerAlphaOrder}>
@@ -51,13 +52,19 @@ export default function Filters ({page, ord}){
                         <MenuItemOption value='+'>Mayor costo</MenuItemOption>
                         <MenuItemOption value='-'>Menor cost</MenuItemOption>
                     </MenuOptionGroup>
-                    <MenuDivider />
-                    <MenuOptionGroup  type='checkbox'onChange={handlerFState}>
+                </MenuList>
+            </Menu>
+            <Menu closeOnSelect={false}>
+                <MenuButton as={Button} colorScheme='blue'  className={style.Buttons}>
+                    Filtrar por: 
+                </MenuButton>
+                <MenuList minWidth='240px' maxWidth='300px'>
+                    <MenuOptionGroup title='Estado' type='checkbox'onChange={handlerFState}>
                         <MenuItemOption value={true} >Completado</MenuItemOption>
                         <MenuItemOption value={false} >En Proceso</MenuItemOption>
                     </MenuOptionGroup>
                     <MenuDivider />
-                    <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation}>
+                    <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation} maxWidth='300px' overflow="scroll">
                         {locations.map((location, i)=>{
                             return <MenuItemOption value={location} key={i}>{location}</MenuItemOption>
                         })}

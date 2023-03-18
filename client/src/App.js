@@ -13,7 +13,6 @@ import {
   Validation,
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
-import ToggleColorMode from "./modeColor/toggleColorMode";
 
 function App() {
   const location = useLocation();
@@ -23,7 +22,6 @@ function App() {
       {/* <div>
           {location.pathname !== '/pagos' || location.pathname !== '/login' && <NavBar/>}
       </div> */}
-      <ToggleColorMode />
       <NavBar />
       <Routes>
         <Route exact path="/" element={<Navigate to="/home" />} />
