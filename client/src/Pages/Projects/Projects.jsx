@@ -1,11 +1,13 @@
 import Page from "../../Components/Page/Page"
-
+import{ useSelector} from 'react-redux';
 
 export default function Projects (){
+    const allProjects = useSelector(state => state.project.ProjectsToDisplay);
+
     return(
         <div>
             <p>Soy Projects</p>
-            <Page/>
+            <Page projects = {allProjects}/>
         </div>
     )
 }

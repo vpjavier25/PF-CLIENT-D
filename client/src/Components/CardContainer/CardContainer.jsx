@@ -8,8 +8,8 @@ export default function CardContainer({ currentProjects }) {
     <div>
       {currentProjects.map((project) => {
         return (
-          <Link to={`/projects/${project.id}`}>
-            <Card project={project} />
+          <Link to={`/projects/${project.id}` } key={project.id}>
+            <Card project={project} key={project.id}/>
           </Link>
         );
       })}
