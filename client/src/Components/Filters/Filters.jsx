@@ -1,4 +1,4 @@
-import {Menu, MenuButton, MenuList, MenuOptionGroup, MenuItemOption, MenuDivider, Button} from "@chakra-ui/react";
+import {Menu, MenuButton, MenuList, MenuOptionGroup, MenuItemOption, MenuDivider, Button, Box} from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { filter, addFilterLocation, addFilterState, orderByAlpha } from "../../Redux/Slicers/projectSlicer";
@@ -64,10 +64,12 @@ export default function Filters ({page, ord}){
                         <MenuItemOption value={false} >En Proceso</MenuItemOption>
                     </MenuOptionGroup>
                     <MenuDivider />
-                    <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation} maxWidth='300px' overflow="scroll">
-                        {locations.map((location, i)=>{
-                            return <MenuItemOption value={location} key={i}>{location}</MenuItemOption>
-                        })}
+                    <MenuOptionGroup title='Pais' type='checkbox'onChange={handlerFLocation} >
+                        <Box maxHeight='200px' overflow="scroll">
+                            {locations.map((location, i)=>{
+                                return <MenuItemOption value={location} key={i}>{location}</MenuItemOption>
+                            })}
+                        </Box>
                     </MenuOptionGroup>
                 </MenuList>
             </Menu>
