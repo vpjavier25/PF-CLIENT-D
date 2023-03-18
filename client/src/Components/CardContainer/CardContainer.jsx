@@ -11,9 +11,7 @@ export default function CardContainer({ currentProjects }) {
           {currentProjects.map((project) => {
             return (
               <Box >
-                <Link to={`/projects/${project.id}` } key={project.id}>
                   <ProjectCard project={project} key={project.id}/>
-                </Link>
               </Box>
             );
           })}

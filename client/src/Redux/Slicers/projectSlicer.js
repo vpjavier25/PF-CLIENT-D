@@ -47,6 +47,14 @@ const projectsSlicer = createSlice({
   name: "project",
   initialState,
   reducers: {
+    /////////logica get by id/////////
+    cleanId(state,action){
+      state.projectId = {};
+    },
+    
+    provGetId(state, action){
+      state.projectId = state.AllProjects.filter((project)=>action.payload==project.id)[0];
+    },
 
     ///////////logica filtros////////////
     filter(state, action) {
@@ -141,6 +149,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha } =
-  projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId } =  projectsSlicer.actions;
 export default projectsSlicer.reducer;

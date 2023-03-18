@@ -1,15 +1,19 @@
 import { useParams } from "react-router-dom";
-import { getProjectById } from "../../Redux/Slicers/projectSlicer";
+import { getProjectById, provGetId, cleanId } from "../../Redux/Slicers/projectSlicer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function DetailProject() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const projectById = useSelector((state) => state.project.projectId);
+  let projectById = useSelector((state) => state.project.projectId);
+
   useEffect(() => {
-    dispatch(getProjectById(id));
-  }, [dispatch, id]);
+    dispatch(provGetId(id));
+    return ()=>{
+      dispatch(cleanId());
+    }
+  }, []);
 
   return (
     <div>
