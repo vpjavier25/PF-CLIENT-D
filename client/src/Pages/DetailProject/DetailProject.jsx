@@ -6,16 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 export default function DetailProject() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const projectById = useSelector((state) => state.project.projectId);
   useEffect(() => {
-    dispatch(getProjectById(id)); //accedo al id de ese perro
+    dispatch(getProjectById(id));
   }, [dispatch, id]);
 
   return (
     <div>
-      <p>Soy DetailProject</p>
+      {Object.keys(projectById).length > 0 ? (
+        <div>
+          <img src={projectById.image} alt={projectById.name} />
+          <h2>Name: {projectById.name}</h2>
+          <h3>Title: {projectById.title}</h3>
+          <p>description: {projectById.description}</p>
+          <p>Location: {projectById.location}</p>
+        </div>
+      ) : (
+        <p>Loading..</p>
+      )}
     </div>
   );
 }
-
-//Solo el achivo index de Pages recibe este export
