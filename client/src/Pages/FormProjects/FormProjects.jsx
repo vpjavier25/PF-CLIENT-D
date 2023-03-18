@@ -1,25 +1,25 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { FormControl, FormLabel, FormErrorMessage, Button, Input, Container, VStack, Textarea, Center, Heading } from "@chakra-ui/react";
+import { FormControl, FormLabel, FormErrorMessage, Button, Input, Container, VStack, Textarea, Center, Heading, Select } from "@chakra-ui/react";
 import { projectSchema } from "./Errors";
 import { postProject } from "../../Redux/Slicers/projectSlicer";
 
 export default function FormProjects() {
-
+  const users = useSelector(state => state.user.users)
   const dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors }, watch } = useForm({
     resolver: yupResolver(projectSchema)
   });
 
   const Submit = (data) => {
-    dispatch(postProject(data))
+    //dispatch(postProject(data))
+    console.log(data)
   }
 
 
   return (
-    <Container mt="100px" mb = "100px">
+    <Container mt="100px" mb="100px">
       <Heading>Create a Project</Heading>
       <form onSubmit={handleSubmit(Submit)}>
         <VStack spacing="24px">
@@ -46,6 +46,12 @@ export default function FormProjects() {
             <Input type='text' placeholder="Share your project's address" {...register('location')} />
             {!errors.name ? null : <FormErrorMessage>{errors.location?.message}</FormErrorMessage>}
           </FormControl>
+
+          <Select placeholder="select a user" {...register("user")}>
+            {users?.map(user => {
+              return <option value={user.id} >{user.name}</option>
+            })}
+          </Select>
 
           <FormControl isInvalid={errors.description ? true : false}>
             <FormLabel>Description</FormLabel>
