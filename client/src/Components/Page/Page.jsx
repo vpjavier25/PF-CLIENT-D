@@ -8,19 +8,16 @@ import NoResult from "../NoResult/NoResult";
 import Filters from "../Filters/Filters";
 
 //import objeto de prueba
-import { project } from '../../Utils/seed';
 
-export default  function Page () {
+export default  function Page ({projects}) {
 
-    // futura linea para traer todos los projectos a mostrar
-    // const allProjects = useSelector(state => state.gamesToDisplay);
 
     //logica paginado
     const [currentPage, setcurrentPage] = useState(1);
     const [perPage, setPerPage] = useState (3);
     const final = currentPage * perPage;
     const first = final - perPage;
-    const currentProjects = project.slice(first,final);
+    const currentProjects = projects.slice(first,final);
     const page = (pagNum)=>{setcurrentPage(pagNum)}
 
     //logica ordenamiento para pasarle al componente filter en que orden filtrar todo;
@@ -34,9 +31,9 @@ export default  function Page () {
                 <Filters page={page} ord={ord}/>
             </div>
             <div>
-                <Pagination projectsPerPage={perPage} projects={project.length} page={page} currentPage={currentPage}/>
+                <Pagination projectsPerPage={perPage} projects={projects.length} page={page} currentPage={currentPage}/>
                 <div >
-                    {project.length ? <CardContainer currentProjects ={currentProjects}/> : <NoResult />}
+                    {projects.length ? <CardContainer currentProjects ={currentProjects}/> : <NoResult />}
                 </div >
             </div>
         </div>

@@ -9,7 +9,7 @@ export default function Pagination ({projectsPerPage, projects, page, currentPag
 
     return(
         <div >
-            <button  onClick={()=>page(currentPage-1)}>Back</button>       
+            {currentPage>1&&<button  onClick={()=>page(currentPage-1)}>Back</button>}       
             <div >
                 {pageNumbers&&pageNumbers.map(num=>{
                     return(
@@ -17,7 +17,7 @@ export default function Pagination ({projectsPerPage, projects, page, currentPag
                     )}
                 )}
             </div>
-            <button onClick={()=>page(currentPage-1)}>Next</button>   
+            {currentPage< pageNumbers[pageNumbers.length-1]  && <button onClick={()=>page(currentPage+1)}>Next</button>}   
         </div>
         
     )
