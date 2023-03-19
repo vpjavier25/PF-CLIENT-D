@@ -1,26 +1,24 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getProjectByName } from "../../Redux/Slicers/projectSlicer";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { searchName, filter } from "../../Redux/Slicers/projectSlicer";
 
 export default function SearchBar() {
+  const searchN = useSelector(state => state.project.projectsSearch);
+
+  useEffect(() => {
+    dispatch(filter())
+  }, [searchN])
+
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
 
   const handlerInputChange = (e) => {
     setName(e.target.value);
+    dispatch(searchName(e.target.value))
   };
 
-  const handlerButton = (e) => {
-    dispatch(getProjectByName(name));
-  };
-
-  function handleKeyDown(event) {
-    if (event.key === "Enter") {
-      dispatch(getProjectByName(name));
-    }
-  }
 
   return (
     <div>
@@ -28,11 +26,7 @@ export default function SearchBar() {
         type="text"
         placeholder="Search project by name..."
         onChange={(e) => handlerInputChange(e)}
-        onKeyDown={handleKeyDown}
       />
-      <button type="submit" onClick={(e) => handlerButton(e)}>
-        Search
-      </button>
     </div>
   );
 }

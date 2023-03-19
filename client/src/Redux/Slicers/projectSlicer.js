@@ -9,9 +9,9 @@ const initialState = {
   projectId: {},
   projectByName: [],
   ProjectsToDisplay: [...project],
-  projectsFiltred: [],
   filterLocation: [],
   filterState: [],
+  projectsSearch: "",
 };
 
 export const getProjectById = createAsyncThunk(
@@ -54,15 +54,21 @@ const projectsSlicer = createSlice({
     
     provGetId(state, action){
       state.projectId = state.AllProjects.filter((project)=>action.payload==project.id)[0];
-    },
+    },    
 
     ///////////logica filtros////////////
     filter(state, action) {
-      if (!state.filterLocation.length && !state.filterState.length) {
+      if (!state.filterLocation.length && !state.filterState.length && state.searchName) {
         state.ProjectsToDisplay = [...state.AllProjects];
         state.projectsFiltred = [...state.AllProjects];
       } else {
         let toFilter = [...state.AllProjects];
+
+        ////////// search ///////////////
+        if(state.projectsSearch.length){
+          let answers = state.AllProjects.filter((project)=>project.name.indexOf(state.projectsSearch)!=-1)
+          toFilter =[...answers];
+        }
 
         if (state.filterState.length) {
           const filters = [...state.filterState];
@@ -90,6 +96,11 @@ const projectsSlicer = createSlice({
       state.filterState = [...action.payload];
     },
 
+    ////////// search ///////////////
+    searchName(state, action){
+      state.projectsSearch = action.payload;
+    },
+
     //logica ordenamiento
     orderByAlpha(state, action) {
       if (!state.ProjectsToDisplay.length) return;
@@ -101,13 +112,13 @@ const projectsSlicer = createSlice({
           let sorted =
             action.payload === "asc"
               ? toFilter.sort((a, b) => {
-                  if (a.name > b.name) return 1;
-                  if (a.name < b.name) return -1;
+                  if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                  if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                   return 0;
                 })
               : toFilter.sort((a, b) => {
-                  if (a.name > b.name) return -1;
-                  if (a.name < b.name) return 1;
+                  if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                  if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
                   return 0;
                 });
           state.ProjectsToDisplay = [...sorted];
@@ -149,5 +160,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId } =  projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName } =  projectsSlicer.actions;
 export default projectsSlicer.reducer;
