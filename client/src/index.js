@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { Store } from "./Redux/Store";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
+import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
