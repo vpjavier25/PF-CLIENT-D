@@ -1,5 +1,6 @@
 import "./App.css";
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
+import LargeWithNewsletter from "./Components/Footer/Footer";
 
 import {
   AboutUs,
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
       </Routes>
+      {location.pathname !== "/projects" && <LargeWithNewsletter />}
     </div>
   );
 }
