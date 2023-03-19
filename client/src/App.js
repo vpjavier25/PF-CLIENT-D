@@ -12,8 +12,10 @@ import {
   Pagos,
   Projects,
   Validation,
+  UserForm,
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
+
 
 function App() {
   const location = useLocation();
@@ -31,7 +33,8 @@ function App() {
         <Route exact path="/projects/:id" element={<DetailProject />} />
         <Route exact path="/create" element={<FormProjects />} />
         <Route exact path="/user/:id" element={<DetailUser />} />
-        <Route exact path="/login" element={<LogIn />} />
+        <Route exact path="/login" element={<LogIn />}/>
+        <Route exact path="/create-user" element={<UserForm />}/>
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />

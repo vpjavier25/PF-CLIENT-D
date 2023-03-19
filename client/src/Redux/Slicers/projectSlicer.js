@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { project, users } from "../../Utils/seed";
+import { project } from "../../Utils/seed";
 
 const initialState = {
   AllProjects: [...project],
@@ -12,15 +12,13 @@ const initialState = {
   projectsFiltred: [],
   filterLocation: [],
   filterState: [],
-  users: [...users],
 };
 
 export const getProjectById = createAsyncThunk(
   "project/getProjectById",
   async (id) => {
     const res = await axios.get(`http://localhost:3001/projects/${id}`);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
 
@@ -28,23 +26,20 @@ export const getProjectByName = createAsyncThunk(
   "project/getProjectByName",
   async (name) => {
     const res = await axios.get(`http://localhost:3001/projects?name=${name}`);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
 
 export const getProject = createAsyncThunk("project/getProject", async () => {
   const res = await axios.get(`http://localhost:3001/projects`);
-  const data = res.json();
-  return data;
+  return res.data;
 });
 
 export const postProject = createAsyncThunk(
   "project/postProject",
   async (info) => {
     const res = await axios.post("http://localhost:3001/projects", info);
-    const data = res.json();
-    return data;
+    return res.data;
   }
 );
 
@@ -52,6 +47,14 @@ const projectsSlicer = createSlice({
   name: "project",
   initialState,
   reducers: {
+    /////////logica get by id/////////
+    cleanId(state,action){
+      state.projectId = {};
+    },
+    
+    provGetId(state, action){
+      state.projectId = state.AllProjects.filter((project)=>action.payload==project.id)[0];
+    },
 
     ///////////logica filtros////////////
     filter(state, action) {
@@ -146,6 +149,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha } =
-  projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId } =  projectsSlicer.actions;
 export default projectsSlicer.reducer;
