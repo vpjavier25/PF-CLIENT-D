@@ -1,0 +1,6 @@
+.navBar {
+  background-color: rgb(128, 183, 239);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
