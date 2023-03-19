@@ -5,10 +5,11 @@ import { filter, addFilterLocation, addFilterState, orderByAlpha } from "../../R
 import style from './Filters.module.css'
 
 
-export default function Filters ({page, ord}){
+export default function Filters ({page}){
 
     //lógica para conseguir todas las locaciones
     const allProjects = useSelector(state => state.project.AllProjects);
+    const searchN = useSelector(state => state.project.projectsSearch);
     const allLocations = new Set();
     allProjects.forEach(project => {allLocations.add(project.location)});
     const locations = Array.from(allLocations);
@@ -21,7 +22,7 @@ export default function Filters ({page, ord}){
     useEffect(() => {
         dispatch(filter())
         page(1);
-    }, [filterLocation, filterState])
+    }, [filterLocation, filterState, searchN, dispatch])
    
     const handlerFLocation = (e) =>{
         dispatch(addFilterLocation(e))
