@@ -1,4 +1,3 @@
-
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
 import LargeWithNewsletter from "./Components/Footer/Footer";
 
