@@ -1,7 +1,13 @@
+import style from "./DetailUser.module.css"
+import { useParams } from "react-router-dom";
+
 export default function DetailUser (){
+    
+    const { name } = useParams();
+
     return(
-        <div>
-            <p>Soy DetailUser</p>
+        <div className={style.Prov}>
+            <p>Soy DetailUser de {name}</p>
         </div>
     )
 }

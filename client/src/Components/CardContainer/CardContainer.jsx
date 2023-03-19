@@ -1,12 +1,7 @@
 import ProjectCard from "../ProjectCard/ProjectCard";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { SimpleGrid, Box } from "@chakra-ui/react";
 
 export default function CardContainer({ currentProjects }) {
-  console.log("hola");
-  console.log(currentProjects);
   return (
     <div
       display="flex"
@@ -17,7 +12,7 @@ export default function CardContainer({ currentProjects }) {
       <SimpleGrid columns={[2, null, 3]} spacing="40px">
         {currentProjects.map((project) => {
           return (
-            <Box>
+            <Box key={project.id}>
               <ProjectCard project={project} key={project.id} />
             </Box>
           );

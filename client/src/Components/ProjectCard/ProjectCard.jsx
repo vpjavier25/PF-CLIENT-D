@@ -1,24 +1,32 @@
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardBody, CardFooter, Flex, Avatar, Box, Heading, Text,
   Image, Button,} from '@chakra-ui/react'
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectCard(props) {
-  const { name, abstrac, images, location, id } = props.project;
+  const { name, abstrac, images, location, id, user } = props.project;
+  const navigate = useNavigate();
+
+  const clickHandler = (e) =>{
+    navigate("/pagos");
+  }
 
   return (
     <Card maxW='md' maxWidth='300px' maxHeight='450px' minWidth='300px' minHeight='450px' >
-      <Link to={`/projects/${id}` } key={id} >      
-        <CardHeader maxHeight='80px'>
-          <Flex spacing='4'>
-            <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-              <Avatar name= {name} src='https://bit.ly/sage-adebayo' />
-              <Box>
-                <Heading size='sm'>{name}</Heading>
-                <Text>{location}</Text>
-              </Box>
-            </Flex>
+      <CardHeader maxHeight='80px'>
+        <Flex spacing='4'>
+          <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+            <Link to={`/user/${user}`}>
+              <Avatar name= {user} src='https://bit.ly/sage-adebayo' />
+            </Link>
+            <Box>
+              <Heading size='sm'>{name}</Heading>
+              <Text>{location}</Text>
+            </Box>
           </Flex>
-        </CardHeader>
+        </Flex>
+      </CardHeader>
+      <Link to={`/projects/${id}` } key={id} >      
         <CardBody maxHeight='80px'>
           <Text >
             {abstrac}
@@ -44,9 +52,9 @@ export default function ProjectCard(props) {
         }}
         margin = '5px'
       >
-        <Button flex='1' variant='ghost' >
-          Donar
-        </Button>
+          <Button flex='1' variant='ghost' onClick={clickHandler}>
+            Donar
+          </Button>
       </CardFooter>
     </Card>
   );
