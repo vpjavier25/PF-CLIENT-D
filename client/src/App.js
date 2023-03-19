@@ -1,4 +1,3 @@
-
 import { useLocation, Routes, Route, Navigate } from "react-router-dom";
 import LargeWithNewsletter from "./Components/Footer/Footer";
 
@@ -32,14 +31,14 @@ function App() {
         <Route exact path="/home/aboutUs" element={<AboutUs />} />
         <Route exact path="/projects/:id" element={<DetailProject />} />
         <Route exact path="/create" element={<FormProjects />} />
-        <Route exact path="/user/:id" element={<DetailUser />} />
+        <Route exact path="/user/:name" element={<DetailUser />} />
         <Route exact path="/login" element={<LogIn />}/>
         <Route exact path="/create-user" element={<UserForm />}/>
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
       </Routes>
-      {location.pathname !== "/projects" && <LargeWithNewsletter />}
+      {(location.pathname.indexOf("projects") !==1) && <LargeWithNewsletter />}
     </div>
   );
 }

@@ -1,7 +1,9 @@
+import style from "./Pagos.module.css"
+
 export default function Pagos (){
     return(
-        <div>
-            <p>Soy Pagos</p>
+        <div className={style.Prov}>
+            <p >Esta es la futura pasarela de pagos</p>
         </div>
     )
 }
