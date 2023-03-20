@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
-import image from "../../Utils/image/2.jpg";
+import image from "../../Utils/image/3.jpg";
 
 const SocialButton = ({ children, label, href }) => {
   return (
