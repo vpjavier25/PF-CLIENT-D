@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import { Card, CardHeader, CardBody, CardFooter, Flex, Avatar, Box, Heading, Text,
-  Image, Button,} from '@chakra-ui/react'
+import {
+  Card, CardHeader, CardBody, CardFooter, Flex, Avatar, Box, Heading, Text,
+  Image, Button, Center,
+} from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
 
 export default function ProjectCard(props) {
-  const { name, abstrac, images, location, id, user } = props.project;
+  const { name, abstrac, image, location, id, user, title } = props.project;
   const navigate = useNavigate();
 
-  const clickHandler = (e) =>{
+  const clickHandler = (e) => {
     navigate("/pagos");
   }
 
@@ -17,29 +19,33 @@ export default function ProjectCard(props) {
         <Flex spacing='4'>
           <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
             <Link to={`/user/${user}`}>
-              <Avatar name= {user} src='https://bit.ly/sage-adebayo' />
+              <Avatar name={user} src='https://bit.ly/sage-adebayo' />
             </Link>
             <Box>
-              <Heading size='sm'>{name}</Heading>
+
+              <Text>{name}</Text>
               <Text>{location}</Text>
             </Box>
           </Flex>
         </Flex>
       </CardHeader>
-      <Link to={`/projects/${id}` } key={id} >      
+      <Link to={`/projects/${id}`} key={id} >
         <CardBody maxHeight='80px'>
           <Text >
             {abstrac}
           </Text>
         </CardBody>
-        <Image
-          objectFit='cover'
-          src={images}
-          alt={name}
-          margin = '5px'
-          maxHeight='200px'
-          minHeight='200px'
-        />
+        <Center>
+          <Image
+            objectFit='cover'
+            src={image}
+            alt={name}
+            margin='5px'
+            maxHeight='200px'
+            minHeight='200px'
+          />
+        </Center>
+
       </Link>
       <CardFooter
         justify='space-between'
@@ -50,11 +56,11 @@ export default function ProjectCard(props) {
             minW: '50px',
           },
         }}
-        margin = '5px'
+        margin='5px'
       >
-          <Button flex='1' variant='ghost' onClick={clickHandler}>
-            Donar
-          </Button>
+        <Button flex='1' variant='ghost' onClick={clickHandler}>
+          Donar
+        </Button>
       </CardFooter>
     </Card>
   );

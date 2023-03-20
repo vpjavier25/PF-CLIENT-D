@@ -3,23 +3,21 @@ import axios from "axios";
 import { users } from "../../Utils/seed";
 
 const initialState = {
-  users : [...users],
+  users : [],
+  postUserStatus: '',
 };
 
-// export const getUserById = createAsyncThunk(
-//   "user/getUserById",
-//   async (id) => {
+
+
+// export const getUsers = createAsyncThunk(
+//   "user/getUsers",
+//   async () => {
 //     const res = await axios.get(`http://localhost:3001/`);
 //     const data = res.json();
 //     return data;
 //   }
 // );
 
-
-export const getUsers= createAsyncThunk("user/getUsers", async () => {
-  const res = await axios.get(`http://localhost:3001/users`);
-  return res.data;
-});
 
 export const postUser = createAsyncThunk(
   "user/postUser",
@@ -36,14 +34,11 @@ const usersSlicer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(postUser.fulfilled, (state) => {
-        state.postStatus = "Succeeded";
+        state.postUserStatus = "Succeeded";
       })
     //   .addCase(getUserById.fulfilled, (state, action) => {
     //     state.projectId = action.payload;
     //   })
-      .addCase(getUsers.fulfilled, (state, action) => {
-        state.users = [...action.payload]
-      })
   },
 });
 
