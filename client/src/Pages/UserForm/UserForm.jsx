@@ -2,15 +2,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { FormControl, FormLabel, FormErrorMessage, Button, Input, Container, VStack, Textarea, Center, Heading } from "@chakra-ui/react";
 import { usersFormSchema } from "./UserFormErrors"; 
+import { useDispatch } from "react-redux";
+import { postUser } from "../../Redux/Slicers/userSlicer";
 
 export default function UserForm() {
     
+    const dispatch = useDispatch();
+
     const { register, handleSubmit, formState: { errors }, watch } = useForm({
         resolver: yupResolver(usersFormSchema)
     });
 
     const Submit = (data) => {
-        console.log(data)
+        dispatch(postUser(data))
     }
     return (
         <Container mt="100px">

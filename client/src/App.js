@@ -15,8 +15,18 @@ import {
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProject } from "./Redux/Slicers/projectSlicer";
+
+
 function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect (()=>{
+    dispatch(getProject());
+  })
 
   return (
     <div className="App">

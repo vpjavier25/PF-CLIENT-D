@@ -13,8 +13,8 @@ export default function FormProjects() {
   });
 
   const Submit = (data) => {
-    //dispatch(postProject(data))
-    console.log(data)
+    dispatch(postProject(data))
+    // console.log(data)
   }
 
 
@@ -47,11 +47,11 @@ export default function FormProjects() {
             {!errors.name ? null : <FormErrorMessage>{errors.location?.message}</FormErrorMessage>}
           </FormControl>
 
-          <Select placeholder="select a user" {...register("user")}>
+          {/* <Select placeholder="select a user" {...register("user")}>
             {users?.map(user => {
               return <option value={user.id} >{user.name}</option>
             })}
-          </Select>
+          </Select> */}
 
           <FormControl isInvalid={errors.description ? true : false}>
             <FormLabel>Description</FormLabel>

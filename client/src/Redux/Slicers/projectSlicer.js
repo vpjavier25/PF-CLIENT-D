@@ -48,13 +48,13 @@ const projectsSlicer = createSlice({
   initialState,
   reducers: {
     /////////logica get by id/////////
-    cleanId(state,action){
+    cleanId(state, action) {
       state.projectId = {};
     },
-    
-    provGetId(state, action){
-      state.projectId = state.AllProjects.filter((project)=>action.payload==project.id)[0];
-    },    
+
+    provGetId(state, action) {
+      state.projectId = state.AllProjects.filter((project) => action.payload == project.id)[0];
+    },
 
     ///////////logica filtros////////////
     filter(state, action) {
@@ -65,9 +65,9 @@ const projectsSlicer = createSlice({
         let toFilter = [...state.AllProjects];
 
         ////////// search ///////////////
-        if(state.projectsSearch.length){
-          let answers = state.AllProjects.filter((project)=>project.name.indexOf(state.projectsSearch)!=-1)
-          toFilter =[...answers];
+        if (state.projectsSearch.length) {
+          let answers = state.AllProjects.filter((project) => project.name.indexOf(state.projectsSearch) != -1)
+          toFilter = [...answers];
         }
 
         if (state.filterState.length) {
@@ -97,7 +97,7 @@ const projectsSlicer = createSlice({
     },
 
     ////////// search ///////////////
-    searchName(state, action){
+    searchName(state, action) {
       state.projectsSearch = action.payload;
     },
 
@@ -112,30 +112,30 @@ const projectsSlicer = createSlice({
           let sorted =
             action.payload === "asc"
               ? toFilter.sort((a, b) => {
-                  if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                  if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                  return 0;
-                })
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                return 0;
+              })
               : toFilter.sort((a, b) => {
-                  if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-                  if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-                  return 0;
-                });
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                return 0;
+              });
           state.ProjectsToDisplay = [...sorted];
         } else {
           const toFilter = [...state.projectsFiltred];
           let sorted =
             action.payload === "-"
               ? toFilter.sort((a, b) => {
-                  if (a.cost > b.cost) return 1;
-                  if (a.cost < b.cost) return -1;
-                  return 0;
-                })
+                if (a.cost > b.cost) return 1;
+                if (a.cost < b.cost) return -1;
+                return 0;
+              })
               : toFilter.sort((a, b) => {
-                  if (a.cost > b.cost) return -1;
-                  if (a.cost < b.cost) return 1;
-                  return 0;
-                });
+                if (a.cost > b.cost) return -1;
+                if (a.cost < b.cost) return 1;
+                return 0;
+              });
           state.ProjectsToDisplay = [...sorted];
         }
       }
@@ -160,5 +160,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName } =  projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName } = projectsSlicer.actions;
 export default projectsSlicer.reducer;
