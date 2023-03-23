@@ -18,6 +18,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
+import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
   useEffect (()=>{
     dispatch(getProject());
+    dispatch(getSeeLaterItem());
   })
 
   return (

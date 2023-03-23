@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 import {
   Card, CardHeader, CardBody, CardFooter, Flex, Avatar, Box, Heading, Text,
-  Image, Button, Center,
+  Image, Button, Center, Input,
 } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux"
+import { addseeLaterItem } from "../../Redux/Slicers/projectSlicer";
 
 export default function ProjectCard(props) {
+  const dispatch = useDispatch(); 
   const { name, abstrac, image, location, id, user, title } = props.project;
   const navigate = useNavigate();
 
-  const clickHandler = (e) => {
+  const clickHandlerDonate = (e) => {
     navigate("/pagos");
+  }
+
+  const clickHandlerSeeLater = (e) => {
+    dispatch(addseeLaterItem(e.target.value));
   }
 
   return (
@@ -58,8 +65,12 @@ export default function ProjectCard(props) {
         }}
         margin='5px'
       >
-        <Button flex='1' variant='ghost' onClick={clickHandler}>
+        <Button flex='1' variant='ghost' onClick={clickHandlerDonate}>
           Donar
+        </Button>
+
+        <Button flex='1' variant='ghost' type="submit" value={id} onClick={clickHandlerSeeLater}>
+          See later
         </Button>
       </CardFooter>
     </Card>

@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUsersSchema } from "./LoginErrors";
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Button, Input, Container, VStack, Box, Flex, Spacer, Heading } from "@chakra-ui/react";
 import { Link } from 'react-router-dom'
+import  SignUp  from "../../Components/GoogleLogIn/LogIn"
 
 
 export default function LogIn() {
@@ -35,6 +36,7 @@ export default function LogIn() {
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
+                        <SignUp/>
                     </Flex>
 
                 </VStack>

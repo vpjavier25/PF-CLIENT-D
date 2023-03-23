@@ -12,6 +12,8 @@ const initialState = {
   filterLocation: [],
   filterState: [],
   projectsSearch: "",
+  seeLaterItemsAdds: [],
+  seeLaterItemsGet: []
 };
 
 export const getProjectById = createAsyncThunk(
@@ -140,6 +142,17 @@ const projectsSlicer = createSlice({
         }
       }
     },
+    //estado para saber cuantos projectos estan en ver mas tarde
+    addseeLaterItem(status, action) {
+      const itemSelected = status.AllProjects.filter((project) => project.id == action.payload);
+      status.seeLaterItemsAdds.push(itemSelected[0]);
+      localStorage.setItem("projectsToSeeLater", JSON.stringify(status.seeLaterItemsAdds));
+    },
+
+    getSeeLaterItem(status) {
+      const data = localStorage.getItem("projectsToSeeLater");
+      const itemsToSeeLater = JSON.parse(data); 
+    }
   },
 
   extraReducers(builder) {
@@ -160,5 +173,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName } = projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName, addseeLaterItem, getSeeLaterItem } = projectsSlicer.actions;
 export default projectsSlicer.reducer;
