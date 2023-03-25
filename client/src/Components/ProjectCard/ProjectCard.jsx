@@ -4,16 +4,20 @@ import {
   Image, Button, Center, Input,
 } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addseeLaterItem } from "../../Redux/Slicers/projectSlicer";
 
 export default function ProjectCard(props) {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const { name, abstrac, image, location, id, user, title } = props.project;
   const navigate = useNavigate();
-
+  const LogInStatus = useSelector((state) => state.login.status);
   const clickHandlerDonate = (e) => {
-    navigate("/pagos");
+    if(LogInStatus){
+      navigate("/pagos");
+    } else {
+      navigate("/login")
+    }
   }
 
   const clickHandlerSeeLater = (e) => {
