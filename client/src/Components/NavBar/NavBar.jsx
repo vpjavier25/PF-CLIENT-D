@@ -10,8 +10,8 @@ import LogOutButton from "../logOutButton/LogOutButton";
 export default function NavBar() {
   const location = useLocation();
 
-  const LogInStatus = useSelector (state => state.login.status)
-  console.log(LogInStatus)
+  const LogInStatus = useSelector((state) => state.login.status);
+  console.log(LogInStatus);
 
   return (
     <div className={style.navBar}>
@@ -46,11 +46,14 @@ export default function NavBar() {
             <Flex justify="space-around">
               {location.pathname !== "/home" && (
                 <Link to={"/home"}>
-                <span className={style.underline}>HOME</span>{" "}
-              </Link>
+                  <span className={style.underline}>HOME</span>{" "}
+                </Link>
               )}
               {!LogInStatus && location.pathname !== "/login" && (
-                <Link to={"/login"}>{" "}<span>Login</span>{" "}</Link>
+                <Link to={"/login"}>
+                  {" "}
+                  <span>Login</span>{" "}
+                </Link>
               )}
 
               {location.pathname !== "/projects" && (
@@ -66,14 +69,12 @@ export default function NavBar() {
                 </Link>
               )}
               {location.pathname !== "/home/aboutUs" && (
-                 <Link to={"/home/aboutUs"}>
-                 {" "}
-                 <span className={style.underline}>About Us</span>{" "}
-               </Link>
+                <Link to={"/home/aboutUs"}>
+                  {" "}
+                  <span className={style.underline}>About Us</span>{" "}
+                </Link>
               )}
-              {LogInStatus && <LogOutButton/> }                     
-               
-              
+              {LogInStatus && <LogOutButton />}
             </Flex>
           </GridItem>
         </GridItem>
