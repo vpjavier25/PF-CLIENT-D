@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import SearchBar from "../SearchBar/SearchBar";
 
 //import de componentes
 import CardContainer from "../CardContainer/CardContainer";
@@ -29,47 +30,50 @@ export default function Page({ projects }) {
   };
 
   return (
-    <Box>
-      <Grid
-        templateAreas={`"header header"
+    <Grid
+      templateAreas={`"header header"
                             "nav main"
                             "nav footer"`}
-        gridTemplateRows={"50px 1fr 30px"}
-        gridTemplateColumns={"150px 1fr"}
-        h="200px"
-        gap="1"
-        color="blackAlpha.700"
+      gridTemplateRows={"50px 1fr 30px"}
+      gridTemplateColumns={"150px 1fr "}
+      h="200px"
+      gap="1"
+      color="blackAlpha.700"
+    >
+      <GridItem pl="2" area={"nav header"} marginTop="1rem">
+        <SearchBar />
+        <Filters page={page} ord={ord} />
+      </GridItem>
+
+      <GridItem
+        pl="2"
+        area={"main"}
+        justify-content="center"
+        align-items="center"
+        margin="10px"
       >
-        <GridItem pl="2" area={"header"}>
-          <Pagination
-            projectsPerPage={perPage}
-            projects={projects.length}
-            page={page}
-            currentPage={currentPage}
-          />
-        </GridItem>
-        <GridItem pl="2" area={"nav"}>
-          <Filters page={page} ord={ord} />
-        </GridItem>
-        <GridItem
-          pl="2"
-          area={"main"}
-          justify-content="center"
-          align-items="center"
-          margin="10px"
-        >
-          <div>
-            {projects.length ? (
-              <CardContainer currentProjects={currentProjects} />
-            ) : (
-              <NoResult />
-            )}
-          </div>
-        </GridItem>
-        <GridItem pl="2" area={"footer"}>
-          <LargeWithNewsletter />
-        </GridItem>
-      </Grid>
-    </Box>
+        <br />
+        <br />
+        <div>
+          {projects.length ? (
+            <CardContainer currentProjects={currentProjects} />
+          ) : (
+            <NoResult />
+          )}
+        </div>
+        <br />
+        <br />
+        <Pagination
+          projectsPerPage={perPage}
+          projects={projects.length}
+          page={page}
+          currentPage={currentPage}
+        />
+      </GridItem>
+
+      <GridItem pl="2" area={"footer"}>
+        <LargeWithNewsletter />
+      </GridItem>
+    </Grid>
   );
 }

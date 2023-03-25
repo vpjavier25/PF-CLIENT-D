@@ -8,20 +8,18 @@ import { Provider } from "react-redux";
 import { Store } from "./Redux/Store";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
-import './i18n';
+import "./i18n";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={Store}>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ChakraProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={Store}>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ChakraProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
