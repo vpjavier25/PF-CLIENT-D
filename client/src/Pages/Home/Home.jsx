@@ -5,12 +5,15 @@ import { useEffect } from "react";
 import { verifyStatus } from "../../Redux/Slicers/LogInSlicer";
 
 export default function Home() {
-  
+  const LogInStatus = useSelector (state => state.login.status)
   const dispatch = useDispatch();
-
+  
   useEffect(()=>{
-    dispatch(verifyStatus());
-  }, [dispatch]);
+    if (!LogInStatus){
+        dispatch(verifyStatus());
+    }
+    
+  }, [dispatch, LogInStatus]);
  
 
   return (

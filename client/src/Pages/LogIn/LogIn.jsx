@@ -7,12 +7,16 @@ import  SignUp  from "../../Components/GoogleLogIn/LogIn"
 import { userLogIn } from "../../Redux/Slicers/LogInSlicer"; 
 import { useDispatch, useSelector } from "react-redux";
 //import { confgCookie } from "../../Redux/Slicers/LogInSlicer";
+import { useEffect } from "react";
 import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function LogIn() {
 
-    
+    const navigate = useNavigate();
+
     const LogInStatus = useSelector (state => state.login.status)
 
     console.log(LogInStatus)
@@ -30,6 +34,11 @@ export default function LogIn() {
         dispatch(userLogIn(data));
 
     }
+
+    useEffect(() => {
+        LogInStatus && navigate('/home');
+     }, [LogInStatus]);
+    
 
     return (
         <Container mt= "100px">
@@ -51,7 +60,8 @@ export default function LogIn() {
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
-                        <SignUp/>
+                        
+                        {/* <SignUp/> */}
                     </Flex>
 
                 </VStack>

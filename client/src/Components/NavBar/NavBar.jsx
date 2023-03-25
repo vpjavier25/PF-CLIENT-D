@@ -4,9 +4,14 @@ import { Box, Flex, Grid, GridItem, Spacer } from "@chakra-ui/react";
 import ToggleColorMode from "../../modeColor/toggleColorMode";
 import image from "../../Utils/image/2.jpg";
 import style from "./NavBar.module.css";
+import { useSelector } from "react-redux";
+import LogOutButton from "../logOutButton/LogOutButton";
 
 export default function NavBar() {
   const location = useLocation();
+
+  const LogInStatus = useSelector (state => state.login.status)
+  console.log(LogInStatus)
 
   return (
     <div className={style.navBar}>
@@ -34,7 +39,7 @@ export default function NavBar() {
               {location.pathname !== "/home" && (
                 <Link to={"/home"}><span>HOME</span> </Link>
               )}
-              {location.pathname !== "/login" && (
+              {!LogInStatus && location.pathname !== "/login" && (
                 <Link to={"/login"}>{" "}<span>Login</span>{" "}</Link>
               )}
               {location.pathname !== "/projects" && (
@@ -45,7 +50,8 @@ export default function NavBar() {
               )}
               {location.pathname !== "/home/aboutUs" && (
                 <Link to={"/home/aboutUs"}>{" "}<span>About Us</span>{" "}</Link>
-              )}                       
+              )}
+              {LogInStatus && <LogOutButton/> }                     
             </Flex>
           </GridItem>
         </GridItem>

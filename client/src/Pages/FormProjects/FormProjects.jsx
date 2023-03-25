@@ -17,11 +17,12 @@ export default function FormProjects() {
   const [err, SetErr] = useState("");
 
   const Submit = (data) => {
-    if (LogInStatus){
+    //if (LogInStatus){
       dispatch(postProject(data))
-    }else{
-      SetErr("debes loguearte")
-    }
+    
+    //}else{
+     // SetErr("debes loguearte")
+    //}
     
     // console.log(data)
   }
@@ -38,11 +39,6 @@ export default function FormProjects() {
             {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
           </FormControl>
 
-          <FormControl isInvalid={errors.title ? true : false}>
-            <FormLabel>Title</FormLabel>
-            <Input type='text' placeholder="Enter a title you want the contributors see" {...register('title')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.title?.message}</FormErrorMessage>}
-          </FormControl>
 
           <FormControl isInvalid={errors.image ? true : false}>
             <FormLabel>Image</FormLabel>
