@@ -40,7 +40,6 @@ export default function LogIn() {
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
-                        <a href="http://localhost:3000/home">click here</a>
                         <SignUp/>
                     </Flex>
 
