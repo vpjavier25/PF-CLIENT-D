@@ -2,6 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { FormControl, FormLabel, FormErrorMessage, Button, Input, Container, VStack, Textarea, Center, Heading, Select } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Button,
+  Input,
+  Container,
+  VStack,
+  Textarea,
+  Center,
+  Heading,
+  Select,
+} from "@chakra-ui/react";
 import { projectSchema } from "./Errors";
 import { postProject } from "../../Redux/Slicers/projectSlicer";
 import { useState } from "react";
@@ -25,31 +40,50 @@ export default function FormProjects() {
     //}
     
     // console.log(data)
-  }
-
+  };
 
   return (
     <Container mt="100px" mb="100px">
-      <Heading>Create a Project</Heading>
+      <Center>
+        <Heading>Create a Project</Heading>
+      </Center>
       <form onSubmit={handleSubmit(Submit)}>
         <VStack spacing="24px">
           <FormControl isInvalid={errors.name ? true : false}>
             <FormLabel>Name</FormLabel>
-            <Input type="text" placeholder="Enter the porject's name" {...register('name')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
+            <Input
+              type="text"
+              placeholder="Enter the porject's name"
+              {...register("name")}
+            />
+            {!errors.name ? null : (
+              <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+            )}
           </FormControl>
 
 
           <FormControl isInvalid={errors.image ? true : false}>
             <FormLabel>Image</FormLabel>
-            <Input type='text' placeholder="Enter a url of your location" {...register('image')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.image?.message}</FormErrorMessage>}
+            <Input
+              type="text"
+              placeholder="Enter a url of your location"
+              {...register("image")}
+            />
+            {!errors.name ? null : (
+              <FormErrorMessage>{errors.image?.message}</FormErrorMessage>
+            )}
           </FormControl>
 
           <FormControl isInvalid={errors.location ? true : false}>
             <FormLabel>Location</FormLabel>
-            <Input type='text' placeholder="Share your project's address" {...register('location')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.location?.message}</FormErrorMessage>}
+            <Input
+              type="text"
+              placeholder="Share your project's address"
+              {...register("location")}
+            />
+            {!errors.name ? null : (
+              <FormErrorMessage>{errors.location?.message}</FormErrorMessage>
+            )}
           </FormControl>
 
           {/* <Select placeholder="select a user" {...register("user")}>
@@ -60,19 +94,26 @@ export default function FormProjects() {
 
           <FormControl isInvalid={errors.description ? true : false}>
             <FormLabel>Description</FormLabel>
-            <Textarea resize="vertical" h="200px" placeholder="Share your story" {...register('description')} />
-            {!errors.name ? null : <FormErrorMessage>{errors.description?.message}</FormErrorMessage>}
+            <Textarea
+              resize="vertical"
+              h="200px"
+              placeholder="Share your story"
+              {...register("description")}
+            />
+            {!errors.name ? null : (
+              <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+            )}
           </FormControl>
 
-          <Button type="submit" colorScheme="blue"> send </Button>
+          <Button type="submit" colorScheme="blue">
+            {" "}
+            send{" "}
+          </Button>
         </VStack>
-
       </form>
       {err? <span>debes loguearte</span>: null}
     </Container>
-
-  )
+  );
 }
-
 
 //Solo el achivo index de Pages recibe este export

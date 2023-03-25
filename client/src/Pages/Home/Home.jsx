@@ -3,6 +3,7 @@ import { SlideData } from "../../Components/carousel/SlideData";
 import { useSelector , useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { verifyStatus } from "../../Redux/Slicers/LogInSlicer";
+import Chatbot from "../../Components/chatbot/chatbot";
 
 export default function Home() {
   const LogInStatus = useSelector (state => state.login.status)
@@ -20,6 +21,7 @@ export default function Home() {
     <>
       <ImageSlider slides={SlideData} />
       
+      <Chatbot />
     </>
   );
 }

@@ -14,6 +14,7 @@ import {
   UserForm,
 } from "./Pages";
 import NavBar from "./Components/NavBar/NavBar";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
@@ -34,10 +35,10 @@ function App() {
     
   }, [dispatch, LogInStatus]);
 
-  useEffect (()=>{
+  useEffect(() => {
     dispatch(getProject());
     dispatch(getSeeLaterItem());
-  })
+  });
 
   return (
     <div className="App">
@@ -52,13 +53,13 @@ function App() {
         <Route exact path="/projects/:id" element={<DetailProject />} />
         <Route exact path="/create" element={<FormProjects />} />
         <Route exact path="/user/:name" element={<DetailUser />} />
-        <Route exact path="/login" element={<LogIn />}/>
-        <Route exact path="/create-user" element={<UserForm />}/>
+        <Route exact path="/login" element={<LogIn />} />
+        <Route exact path="/create-user" element={<UserForm />} />
         <Route exact path="/pagos" element={<Pagos />} />
         <Route exact path="/projects" element={<Projects />} />
         <Route exact path="/validation" element={<Validation />} />
       </Routes>
-      {(location.pathname.indexOf("projects") !==1) && <LargeWithNewsletter />}
+      {location.pathname.indexOf("projects") !== 1 && <LargeWithNewsletter />}
     </div>
   );
 }
