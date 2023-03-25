@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { FormControl, FormLabel, FormErrorMessage, Button, Input, Container, VStack, Textarea, Center, Heading, Select } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   FormControl,
   FormLabel,

@@ -1,8 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUsersSchema } from "./LoginErrors";
-import { Link } from 'react-router-dom'
-import  SignUp  from "../../Components/GoogleLogIn/LogIn"
 import { userLogIn } from "../../Redux/Slicers/LogInSlicer"; 
 import { useDispatch, useSelector } from "react-redux";
 //import { confgCookie } from "../../Redux/Slicers/LogInSlicer";
