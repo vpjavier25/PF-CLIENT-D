@@ -1,18 +1,35 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUsersSchema } from "./LoginErrors";
-import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Button, Input, Container, VStack, Box, Flex, Spacer, Heading } from "@chakra-ui/react";
-import { Link } from 'react-router-dom'
-import  SignUp  from "../../Components/GoogleLogIn/LogIn"
 import { userLogIn } from "../../Redux/Slicers/LogInSlicer"; 
 import { useDispatch, useSelector } from "react-redux";
 //import { confgCookie } from "../../Redux/Slicers/LogInSlicer";
+import { useEffect } from "react";
 import Cookie from "js-cookie";
-
+import { useNavigate } from "react-router-dom";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Button,
+  Input,
+  Container,
+  VStack,
+  Box,
+  Flex,
+  Spacer,
+  Heading,
+  Divider,
+  Center,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import SignUp from "../../Components/GoogleLogIn/LogIn";
 
 export default function LogIn() {
+ 
+    const navigate = useNavigate();
 
-    
     const LogInStatus = useSelector (state => state.login.status)
 
     console.log(LogInStatus)
@@ -30,6 +47,11 @@ export default function LogIn() {
         dispatch(userLogIn(data));
 
     }
+
+    useEffect(() => {
+        LogInStatus && navigate('/home');
+     }, [LogInStatus]);
+    
 
     return (
         <Container mt= "100px">
@@ -51,7 +73,8 @@ export default function LogIn() {
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
-                        <SignUp/>
+                        
+                        {/* <SignUp/> */}
                     </Flex>
 
                 </VStack>
@@ -61,4 +84,4 @@ export default function LogIn() {
     )
 }
 
-//Solo el achivo index de Pages recibe este export 
+//Solo el achivo index de Pages recibe este export

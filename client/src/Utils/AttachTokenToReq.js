@@ -6,17 +6,14 @@ import axios from "axios";
 
     const defaultOptions = {
         baseURL: "http://localhost:3001",
-        headers: {
-            'Content-Type': 'application/json',
-        },
     };
 
     // Create instance
     export let instance = axios.create(defaultOptions);
 
     // Set the AUTH token for any request
-    instance.interceptors.request.use(function (config) {
+    instance.interceptors.request.use( req => {
         const token = Cookie.get('token');
-        config.headers.Authorization = `Bearer ${token}`
-        return config;
+        req.headers.Authorization = `Bearer ${token}`
+        return req;
     });

@@ -4,7 +4,7 @@ import Cookie from "js-cookie";
 
 
 const initialState = {
-    status: false
+    status: Cookie.get("success")? true: false
 }
 
 export const userLogIn = createAsyncThunk(
@@ -21,11 +21,12 @@ export const userLogIn = createAsyncThunk(
 
 
 const logInSlicer = createSlice({
-    name: "logIn",
+    name: "login",
     initialState,
     reducers: {
         verifyStatus(state, action) {
             const LogInStatus = Cookie.get("value");
+            console.log(LogInStatus)
             if (LogInStatus) {
                 state.status = true;
             } else {
@@ -44,8 +45,6 @@ const logInSlicer = createSlice({
                 }else {
                     state.status = false
                 }
-               
-
             })
     }
 

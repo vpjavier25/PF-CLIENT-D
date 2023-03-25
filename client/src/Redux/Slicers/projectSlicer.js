@@ -18,6 +18,8 @@ const initialState = {
   seeLaterItemsGet: []
 };
 
+
+
 export const getProjectById = createAsyncThunk(
   "project/getProjectById",
   async (id) => {
@@ -42,14 +44,24 @@ export const getProject = createAsyncThunk("project/getProject", async () => {
 export const postProject = createAsyncThunk(
   "project/postProject",
   async (info) => {
-    const res = await instance.post("/projects", info);
-
-    instance.interceptors.request.use(function (config) {
-      const token = Cookie.get('token');
-      config.headers.Authorization = `Bearer ${token}`
-      return config;
+    
+    axios.interceptors.request.use(req => {
+      const token = Cookie.get("value")
+      req.headers.authorization =`Bearer ${token}`;
+      return req;
     });
-    return res.data;
+
+    try {
+      const res = await axios.post("http://localhost:3001/projects", info);
+
+
+      console.log(res.data)
+      return res.data;
+
+    } catch (error) {
+      console.log(error.message)
+    }
+
   }
 );
 

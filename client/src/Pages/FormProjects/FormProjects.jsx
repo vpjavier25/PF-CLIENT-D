@@ -35,11 +35,13 @@ export default function FormProjects() {
   const [err, SetErr] = useState("");
 
   const Submit = (data) => {
-    if (LogInStatus) {
-      dispatch(postProject(data));
-    } else {
-      SetErr("debes loguearte");
-    }
+    //if (LogInStatus){
+      dispatch(postProject(data))
+    
+    //}else{
+     // SetErr("debes loguearte")
+    //}
+    
     // console.log(data)
   };
 
