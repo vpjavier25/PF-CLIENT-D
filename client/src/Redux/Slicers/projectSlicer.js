@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { project } from "../../Utils/seed";
+import { instance } from "../../Utils/AttachTokenToReq";
+import Cookie from "js-cookie";
 
 const initialState = {
   AllProjects: [...project],
@@ -42,8 +44,24 @@ export const getProject = createAsyncThunk("project/getProject", async () => {
 export const postProject = createAsyncThunk(
   "project/postProject",
   async (info) => {
-    const res = await axios.post("http://localhost:3001/projects", info);
-    return res.data;
+    
+    axios.interceptors.request.use(req => {
+      const token = Cookie.get("value")
+      req.headers.authorization =`Bearer ${token}`;
+      return req;
+    });
+
+    try {
+      const res = await axios.post("http://localhost:3001/projects", info);
+
+
+      console.log(res.data)
+      return res.data;
+
+    } catch (error) {
+      console.log(error.message)
+    }
+
   }
 );
 
@@ -153,7 +171,7 @@ const projectsSlicer = createSlice({
 
     getSeeLaterItem(status) {
       const data = localStorage.getItem("projectsToSeeLater");
-      const itemsToSeeLater = JSON.parse(data); 
+      const itemsToSeeLater = JSON.parse(data);
     }
   },
 

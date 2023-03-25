@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { set, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
 import {
   FormControl,
   FormLabel,
@@ -16,21 +16,26 @@ import {
 } from "@chakra-ui/react";
 import { projectSchema } from "./Errors";
 import { postProject } from "../../Redux/Slicers/projectSlicer";
+import { useState } from "react";
 
 export default function FormProjects() {
-  const users = useSelector((state) => state.user.users);
-  const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm({
-    resolver: yupResolver(projectSchema),
+  const users = useSelector(state => state.user.users)
+  const LogInStatus = useSelector (state => state.login.status)
+  console.log(LogInStatus)
+  const dispatch = useDispatch()
+  const { register, handleSubmit, formState: { errors }, watch } = useForm({
+    resolver: yupResolver(projectSchema)
   });
+  const [err, SetErr] = useState("");
 
   const Submit = (data) => {
-    dispatch(postProject(data));
+    //if (LogInStatus){
+      dispatch(postProject(data))
+    
+    //}else{
+     // SetErr("debes loguearte")
+    //}
+    
     // console.log(data)
   };
 
@@ -53,17 +58,6 @@ export default function FormProjects() {
             )}
           </FormControl>
 
-          <FormControl isInvalid={errors.title ? true : false}>
-            <FormLabel>Title</FormLabel>
-            <Input
-              type="text"
-              placeholder="Enter a title you want the contributors see"
-              {...register("title")}
-            />
-            {!errors.name ? null : (
-              <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
-            )}
-          </FormControl>
 
           <FormControl isInvalid={errors.image ? true : false}>
             <FormLabel>Image</FormLabel>
@@ -114,6 +108,7 @@ export default function FormProjects() {
           </Button>
         </VStack>
       </form>
+      {err? <span>debes loguearte</span>: null}
     </Container>
   );
 }
