@@ -4,16 +4,20 @@ import { loginUsersSchema } from "./LoginErrors";
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Button, Input, Container, VStack, Box, Flex, Spacer, Heading } from "@chakra-ui/react";
 import { Link } from 'react-router-dom'
 import  SignUp  from "../../Components/GoogleLogIn/LogIn"
+import { userLogIn } from "../../Redux/Slicers/LogInSlicer"; 
+import { useDispatch } from "react-redux";
 
 
 export default function LogIn() {
+
+    const dispatch = useDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(loginUsersSchema)
     })
 
     const Submit = (data) => {
-        console.log(data)
+        dispatch(userLogIn());
     }
 
     return (
@@ -21,10 +25,10 @@ export default function LogIn() {
             <Heading>Log in</Heading>
             <form onSubmit={handleSubmit(Submit)}>
                 <VStack spacing="24px">
-                    <FormControl isInvalid={errors.userName ? true : false}>
+                    <FormControl isInvalid={errors.name ? true : false}>
                         <FormLabel>User name</FormLabel>
-                        <Input type="text" placeholder="Enter the user name" {...register('userName')} />
-                        {!errors.userName ? null : <FormErrorMessage>{errors.userName?.message}</FormErrorMessage>}
+                        <Input type="text" placeholder="Enter the user name" {...register('name')} />
+                        {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
                     </FormControl>
 
                     <FormControl isInvalid={errors.password ? true : false}>
@@ -36,6 +40,7 @@ export default function LogIn() {
                         <Link to={"/create-user"} style={{color:"blue"}}>Create an Account</Link> 
                         <Spacer></Spacer>
                         <Button type="submit" colorScheme="blue"> send </Button>
+                        <a href="http://localhost:3000/home">click here</a>
                         <SignUp/>
                     </Flex>
 

@@ -14,6 +14,7 @@ export default function UserForm() {
     });
 
     const Submit = (data) => {
+        console.log(data)
         dispatch(postUser(data))
     }
     return (
@@ -21,10 +22,10 @@ export default function UserForm() {
             <Heading>Create an account</Heading>
             <form onSubmit={handleSubmit(Submit)}>
                 <VStack spacing="24px">
-                    <FormControl isInvalid={errors.userName ? true : false}>
+                    <FormControl isInvalid={errors.name ? true : false}>
                         <FormLabel>User name</FormLabel>
-                        <Input type="text" placeholder="Enter the user name" {...register('userName')} />
-                        {!errors.userName ? null : <FormErrorMessage>{errors.userName?.message}</FormErrorMessage>}
+                        <Input type="text" placeholder="Enter the user name" {...register('name')} />
+                        {!errors.name ? null : <FormErrorMessage>{errors.name?.message}</FormErrorMessage>}
                     </FormControl>
 
                     <FormControl isInvalid={errors.password ? true : false}>

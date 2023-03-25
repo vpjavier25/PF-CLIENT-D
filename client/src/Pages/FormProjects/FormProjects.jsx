@@ -1,19 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { FormControl, FormLabel, FormErrorMessage, Button, Input, Container, VStack, Textarea, Center, Heading, Select } from "@chakra-ui/react";
 import { projectSchema } from "./Errors";
 import { postProject } from "../../Redux/Slicers/projectSlicer";
+import { useState } from "react";
 
 export default function FormProjects() {
   const users = useSelector(state => state.user.users)
+  const LogInStatus = useSelector (state => state.Login.status)
   const dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors }, watch } = useForm({
     resolver: yupResolver(projectSchema)
   });
+  const [err, SetErr] = useState("");
 
   const Submit = (data) => {
-    dispatch(postProject(data))
+    if (LogInStatus){
+      dispatch(postProject(data))
+    }else{
+      SetErr("debes loguearte")
+    }
+    
     // console.log(data)
   }
 
@@ -63,6 +71,7 @@ export default function FormProjects() {
         </VStack>
 
       </form>
+      {err? <span>debes loguearte</span>: null}
     </Container>
 
   )
