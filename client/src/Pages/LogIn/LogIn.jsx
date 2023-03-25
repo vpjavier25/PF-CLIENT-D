@@ -5,19 +5,30 @@ import { FormControl, FormLabel, FormErrorMessage, FormHelperText, Button, Input
 import { Link } from 'react-router-dom'
 import  SignUp  from "../../Components/GoogleLogIn/LogIn"
 import { userLogIn } from "../../Redux/Slicers/LogInSlicer"; 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+//import { confgCookie } from "../../Redux/Slicers/LogInSlicer";
+import Cookie from "js-cookie";
 
 
 export default function LogIn() {
 
+    
+    const LogInStatus = useSelector (state => state.login.status)
+
+    console.log(LogInStatus)
+
     const dispatch = useDispatch();
+
+    console.log(Cookie.get("value"));
+    
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(loginUsersSchema)
     })
 
     const Submit = (data) => {
-        dispatch(userLogIn());
+        dispatch(userLogIn(data));
+
     }
 
     return (

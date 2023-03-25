@@ -8,7 +8,8 @@ import { useState } from "react";
 
 export default function FormProjects() {
   const users = useSelector(state => state.user.users)
-  const LogInStatus = useSelector (state => state.Login.status)
+  const LogInStatus = useSelector (state => state.login.status)
+  console.log(LogInStatus)
   const dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors }, watch } = useForm({
     resolver: yupResolver(projectSchema)
