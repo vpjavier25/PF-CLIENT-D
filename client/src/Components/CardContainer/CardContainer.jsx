@@ -16,7 +16,7 @@ export default function CardContainer({ currentProjects }) {
   const onClickHandlerSeeLater = (event) => {
     //setSelected([...selected, event. ])
     console.log(event.target.value);
-  }
+  };
 
   return (
     <div
@@ -25,11 +25,15 @@ export default function CardContainer({ currentProjects }) {
       width="100%"
       align-items="center"
     >
-      <SimpleGrid columns={[2, null, 3]} spacing="40px">
+      <SimpleGrid templateColumns="repeat(3, 1fr)" spacing="40px">
         {currentProjects.map((project) => {
           return (
             <Box key={project.id}>
-              <ProjectCard project={project} onClickHandlerSeeLater={onClickHandlerSeeLater} key={project.id} />
+              <ProjectCard
+                project={project}
+                onClickHandlerSeeLater={onClickHandlerSeeLater}
+                key={project.id}
+              />
             </Box>
           );
         })}

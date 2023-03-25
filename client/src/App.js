@@ -20,15 +20,14 @@ import { useDispatch } from "react-redux";
 import { getProject } from "./Redux/Slicers/projectSlicer";
 import { getSeeLaterItem } from "./Redux/Slicers/projectSlicer";
 
-
 function App() {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  useEffect (()=>{
+  useEffect(() => {
     dispatch(getProject());
     dispatch(getSeeLaterItem());
-  })
+  });
 
   return (
     <div className="App">
