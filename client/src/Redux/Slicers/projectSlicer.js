@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { project } from "../../Utils/seed";
+import { instance } from "../../Utils/AttachTokenToReq";
+import Cookie from "js-cookie";
 
 const initialState = {
   AllProjects: [...project],
@@ -12,7 +14,11 @@ const initialState = {
   filterLocation: [],
   filterState: [],
   projectsSearch: "",
+  seeLaterItemsAdds: [],
+  seeLaterItemsGet: []
 };
+
+
 
 export const getProjectById = createAsyncThunk(
   "project/getProjectById",
@@ -38,8 +44,24 @@ export const getProject = createAsyncThunk("project/getProject", async () => {
 export const postProject = createAsyncThunk(
   "project/postProject",
   async (info) => {
-    const res = await axios.post("http://localhost:3001/projects", info);
-    return res.data;
+    
+    axios.interceptors.request.use(req => {
+      const token = Cookie.get("value")
+      req.headers.authorization =`Bearer ${token}`;
+      return req;
+    });
+
+    try {
+      const res = await axios.post("http://localhost:3001/projects", info);
+
+
+      console.log(res.data)
+      return res.data;
+
+    } catch (error) {
+      console.log(error.message)
+    }
+
   }
 );
 
@@ -140,6 +162,17 @@ const projectsSlicer = createSlice({
         }
       }
     },
+    //estado para saber cuantos projectos estan en ver mas tarde
+    addseeLaterItem(status, action) {
+      const itemSelected = status.AllProjects.filter((project) => project.id == action.payload);
+      status.seeLaterItemsAdds.push(itemSelected[0]);
+      localStorage.setItem("projectsToSeeLater", JSON.stringify(status.seeLaterItemsAdds));
+    },
+
+    getSeeLaterItem(status) {
+      const data = localStorage.getItem("projectsToSeeLater");
+      const itemsToSeeLater = JSON.parse(data);
+    }
   },
 
   extraReducers(builder) {
@@ -160,5 +193,5 @@ const projectsSlicer = createSlice({
       });
   },
 });
-export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName } = projectsSlicer.actions;
+export const { filter, addFilterLocation, addFilterState, orderByAlpha, provGetId, cleanId, searchName, addseeLaterItem, getSeeLaterItem } = projectsSlicer.actions;
 export default projectsSlicer.reducer;
