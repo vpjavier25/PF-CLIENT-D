@@ -8,6 +8,10 @@ import Pagos from "./Pagos/Pagos";
 import Projects from "./Projects/Projects"
 import Validation from "./Validation/Validation"
 import UserForm from "./UserForm/UserForm";
+import axios from "axios";
+
+/* axios.defaults.baseURL = `http://localhost:3001` */
+axios.defaults.baseURL = `https://pf-api-production.up.railway.app/`
 
 //Este archivo exporta todos las pages con {} para hacer más facil su import
 //ejem import {DetailUser} from "./Pages" (VS eentra automaticamente a index)
