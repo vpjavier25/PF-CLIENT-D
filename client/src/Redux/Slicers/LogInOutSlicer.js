@@ -51,6 +51,7 @@ const logInSlicer = createSlice({
 
             localStorage.removeItem("value")
             localStorage.removeItem("origin")
+            state.status = false;
         }
     },
     extraReducers(builder) {
